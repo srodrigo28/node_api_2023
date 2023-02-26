@@ -2,20 +2,17 @@ const express = require('express')
 const router = express.Router()
 
 const tasksController = require('./controllers/tasksController')
+const validaUpdate = require('./middlewares/tasksMiddleware')
 const valida = require('./middlewares/tasksMiddleware')
 
-const contasController = require('./controllers/contasController')
+router.get('/', (_req, res) => res.status(200).send('O router tá funcionando'))
 
-router.get('/', (req, res) => res.status(200).send('O router tá funcionando'))
-
-/** Taks */
+/** Taks ROTAS*/
     router.get('/tasks', tasksController.getAll)
-    router.get('/tasks/:id', tasksController.getOne)
     router.post('/tasks', valida.validateBody, tasksController.createTask)
-    router.delete('/tasks/:id', tasksController.deleteTask)
 
-/** Contas */
-    router.get('/contas', contasController.getContasAll)
-    // router.post('/contas', contasController.createConta)
+    router.delete('/tasks/:id', tasksController.deleteTask)
+    router.get('/tasks/:id', tasksController.getOne) /** Conta propria */
+    router.put('/tasks/:id', validaUpdate.validateUpdateBody, tasksController.updateTask)
 
 module.exports = router

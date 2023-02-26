@@ -1,4 +1,4 @@
-const connection = require('./connection')
+const connection = require('../core/connection')
 
 /** Lista todos */
 const getAll = async() => {
@@ -27,9 +27,18 @@ const deleteTask = async(id) => {
     return removedTask
 }
 
+/** Update */
+const updateTask = async(id, task) => {
+    const { title, status } = task
+    const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ?';
+    const [updateTask] = await connection.execute(query, [title, status, id])
+    return updateTask
+}
+
 module.exports = {
     getAll,
     getOne,
     createTask,
-    deleteTask
+    deleteTask,
+    updateTask
 }
