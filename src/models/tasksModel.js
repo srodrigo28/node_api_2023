@@ -8,9 +8,12 @@ const getAll = async() => {
 const createTask = async (task) => {
     const { title } = task;
 
-    const query = 'INSERT INTO tasks(title, status, created_at) VALUES ?, ?, ?'
+    const dateUTC = new Date(Date.now()).toUTCString();
 
-    const createTask = await connection.execute(query, [title, 'pendente', ''] )
+    const query = 'INSERT INTO tasks(title, status, created_at) VALUES (?, ?, ?)'
+    
+    const createTask = await connection.execute(query, [title, 'pendente', dateUTC] )
+    return createTask
 }
 
 module.exports = {

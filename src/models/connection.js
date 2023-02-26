@@ -6,7 +6,7 @@ const HOST = process.env.MYSQL_HOST
 const USER = process.env.MYSQL_USER
 const PASS = process.env.MYSQL_PASSWORD
 const DB = process.env.MYSQL_DB
-/** VERICA DADOS VINDO DO .ENV
+/**  VERICA DADOS VINDO DO .ENV 
     console.log(PORT)
     console.log(HOST)
     console.log(USER)

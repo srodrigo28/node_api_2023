@@ -14,17 +14,10 @@ const DB = process.env.MYSQL_DB
     console.log(DB)
 */
 const connection = mysql.createPool({
-    // port: MYSQL_PORT,
     host: HOST,
     //port: PORT,
     user: USER,
     password: PASS,
     database: DB
 })
-/** 
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-})
-*/
 module.exports = connection
